@@ -1,18 +1,19 @@
 'use client';
 
+import classNames from 'classnames';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { AiFillBug } from 'react-icons/ai';
 
 const navbars = [
   { label: 'Dashboard', href: '/' },
-  { label: 'Issues', href: '/issue' },
+  { label: 'Issues', href: '/issues' },
 ];
 
 const isActive = (current: string, selected: string) => current === selected;
 
 function NavBar() {
-  const pathname = usePathname();
+  const currentPath = usePathname();
 
   return (
     <nav className="flex gap-6 px-5 mb-5 h-14 items-center border-b">
@@ -23,9 +24,11 @@ function NavBar() {
         {navbars.map((nav) => (
           <Link
             key={nav.label}
-            className={
-              `${isActive(nav.href, pathname) ? 'text-zinc-800' : 'text-zinc-500'} hover:text-zinc-800 transition-colors`
-            }
+            className={classNames({
+              'text-zinc-900': currentPath === nav.href,
+              'text-zinc-500': currentPath !== nav.href,
+              'hover:text-zinc-800 transition-colors': true,
+            })}
             href={nav.href}
           >
             {nav.label}
