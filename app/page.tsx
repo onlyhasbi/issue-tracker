@@ -1,3 +1,3 @@
 export default function Home() {
-  return <>Issue Tracker</>;
+  return <main>Issue Tracker</main>;
 }
