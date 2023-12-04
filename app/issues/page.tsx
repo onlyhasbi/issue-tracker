@@ -1,9 +1,13 @@
-import React from 'react'
+import { Button } from '@radix-ui/themes';
+import React from 'react';
 
-function Issue() {
+function IssuePage() {
   return (
-    <div>Issue</div>
-  )
+    <div>
+      IssuePage
+      <Button variant="solid">Submit</Button>
+    </div>
+  );
 }
 
-export default Issue
+export default IssuePage;
