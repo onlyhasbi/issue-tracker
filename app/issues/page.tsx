@@ -1,13 +1,11 @@
 import prisma from '@/prisma/client';
 import { Table } from '@radix-ui/themes';
-import delay from 'delay';
 import IssuesBadge from '../components/IssuesBadge';
 import IssueAction from './IssueAction';
 import Link from 'next/link';
 
 async function IssuePage() {
   const issues = await prisma.issue.findMany();
-  await delay(2000);
 
   return (
     <div className="space-y-5">
