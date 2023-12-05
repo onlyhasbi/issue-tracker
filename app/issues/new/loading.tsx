@@ -1,19 +1,13 @@
-import React from 'react';
-import Skeleton from 'react-loading-skeleton';
-import 'react-loading-skeleton/dist/skeleton.css';
+import { Skeleton } from '@/app/components';
 
 function LoadingNewIssue() {
   return (
-    <div className="max-w-xl space-y-3">
-      <form className="max-w-xl space-y-3">
-        <div className="space-y-1">
-          <Skeleton />
-        </div>
-        <div className="space-y-1">
-          <Skeleton />
-        </div>
-        <Skeleton />
-      </form>
+    <div className="max-w-xl">
+      <Skeleton />
+      <div className="py-5">
+        <Skeleton count={5} />
+      </div>
+      <Skeleton width="3rem" />
     </div>
   );
 }
