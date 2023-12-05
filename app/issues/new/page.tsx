@@ -13,10 +13,11 @@ import { Controller, useForm } from 'react-hook-form';
 import { LuInfo } from 'react-icons/lu';
 import SimpleMDE from 'react-simplemde-editor';
 import { z } from 'zod';
+import delay from 'delay';
 
 type IssueForm = z.infer<typeof issueSchema>;
 
-function NewIssuePage() {
+async function NewIssuePage() {
   const [error, setError] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const router = useRouter();
@@ -43,6 +44,8 @@ function NewIssuePage() {
       error && setError('An expected error occured');
     }
   });
+
+  await delay(2000);
 
   return (
     <div className="max-w-xl space-y-3">

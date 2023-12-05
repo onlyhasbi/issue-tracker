@@ -1,19 +1,14 @@
-import prisma from '@/prisma/client';
 import { Table } from '@radix-ui/themes';
-import delay from 'delay';
-import IssuesBadge from '../components/IssuesBadge';
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 import IssueAction from './IssueAction';
-import Link from 'next/link';
 
-async function IssuePage() {
-  const issues = await prisma.issue.findMany();
-  await delay(2000);
+function LoadingIssue() {
+  const issues = [1, 2, 3, 4, 5];
 
   return (
     <div className="space-y-5">
-    
       <IssueAction />
-
       <Table.Root variant="surface">
         <Table.Header>
           <Table.Row>
@@ -28,18 +23,18 @@ async function IssuePage() {
         </Table.Header>
         <Table.Body>
           {issues.map((issue) => (
-            <Table.Row key={issue.id}>
+            <Table.Row key={issue}>
               <Table.Cell>
-                <Link href={`/issues/${issue.id}`} className="hover:underline">{issue.title}</Link>
+                <Skeleton />
                 <div className="block mt-1 md:hidden">
-                  <IssuesBadge status={issue.status} />
+                  <Skeleton />
                 </div>
               </Table.Cell>
               <Table.Cell className="hidden md:table-cell">
-                <IssuesBadge status={issue.status} />
+                <Skeleton />
               </Table.Cell>
               <Table.Cell className="hidden md:table-cell">
-                {issue.createdAt.toDateString()}
+                <Skeleton />
               </Table.Cell>
             </Table.Row>
           ))}
@@ -49,4 +44,4 @@ async function IssuePage() {
   );
 }
 
-export default IssuePage;
+export default LoadingIssue;
