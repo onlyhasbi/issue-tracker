@@ -23,12 +23,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning={true}>
       <body className={inter.variable}>
         <Theme appearance="light" accentColor="purple">
           <NavBar />
           <main className="p-5">{children}</main>
-          {/* <ThemePanel /> */}
         </Theme>
       </body>
     </html>

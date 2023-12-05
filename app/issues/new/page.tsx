@@ -1,21 +1,24 @@
 'use client';
 
-import { Button, Callout, Text, TextField } from '@radix-ui/themes';
+import ErrorMessage from '@/app/components/ErrorMessage';
+import Spinner from '@/app/components/Spinner';
+import { issueSchema } from '@/app/validationSchema';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { Button, Callout, TextField } from '@radix-ui/themes';
 import axios from 'axios';
 import 'easymde/dist/easymde.min.css';
-import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Controller, FieldValues, useForm } from 'react-hook-form';
+import { useState } from 'react';
+import { Controller, useForm } from 'react-hook-form';
 import { LuInfo } from 'react-icons/lu';
 import SimpleMDE from 'react-simplemde-editor';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { issueSchema } from '@/app/validationSchema';
 import { z } from 'zod';
 
 type IssueForm = z.infer<typeof issueSchema>;
 
 function NewIssuePage() {
   const [error, setError] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const router = useRouter();
   const {
     register,
@@ -30,14 +33,16 @@ function NewIssuePage() {
     },
   });
 
-  const onSubmit = async (data: FieldValues) => {
+  const onSubmit = handleSubmit(async (data) => {
     try {
+      setIsSubmitting(true);
       await axios.post('/api/issues', data);
       router.push('/issues');
     } catch (error) {
+      setIsSubmitting(false);
       error && setError('An expected error occured');
     }
-  };
+  });
 
   return (
     <div className="max-w-xl space-y-3">
@@ -50,10 +55,10 @@ function NewIssuePage() {
         </Callout.Root>
       )}
 
-      <form onSubmit={handleSubmit(onSubmit)} className="max-w-xl space-y-3">
+      <form onSubmit={onSubmit} className="max-w-xl space-y-3">
         <div className="space-y-1">
           <TextField.Input placeholder="Title" {...register('title')} />
-          {errors.title && <Text color="red" size="2" as="p">{errors.title.message}</Text>}
+          <ErrorMessage>{errors.title?.message}</ErrorMessage>
         </div>
         <div className="space-y-1">
           <Controller
@@ -63,11 +68,13 @@ function NewIssuePage() {
               <SimpleMDE placeholder="Description" {...field} />
             )}
           />
-          {errors.description && (
-            <Text color="red" size="2"  as="p">{errors.description.message}</Text>
-          )}
+          <ErrorMessage>{errors.description?.message}</ErrorMessage>
         </div>
-        <Button variant="solid">Submit New Issue</Button>
+
+        <Button variant="solid" disabled={isSubmitting}>
+          {isSubmitting && <Spinner />}
+          Submit Issue
+        </Button>
       </form>
     </div>
   );

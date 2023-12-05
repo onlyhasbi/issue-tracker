@@ -5,7 +5,7 @@ import React from 'react';
 function IssuePage() {
   return (
     <div>
-      IssuePage
+      <p>IssuePage</p>
       <Button variant="solid">
         <Link href="/issues/new">New Issue</Link>
       </Button>

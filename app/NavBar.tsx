@@ -10,8 +10,6 @@ const navbars = [
   { label: 'Issues', href: '/issues' },
 ];
 
-const isActive = (current: string, selected: string) => current === selected;
-
 function NavBar() {
   const currentPath = usePathname();
 
@@ -21,7 +19,7 @@ function NavBar() {
         <AiFillBug />
       </Link>
       <ul className="flex gap-3">
-        {navbars.map((nav) => (
+        {navbars?.map((nav) => (
           <Link
             key={nav.label}
             className={classNames({
