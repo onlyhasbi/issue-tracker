@@ -4,8 +4,6 @@ import { Heading, Flex, Card, Text } from '@radix-ui/themes';
 import React from 'react';
 import Markdown from 'react-markdown';
 
-type Props = {};
-
 function IssueDetails({ issue }: { issue: Issue }) {
   return (
     <>
