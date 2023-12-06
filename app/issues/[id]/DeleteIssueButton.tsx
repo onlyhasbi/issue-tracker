@@ -6,17 +6,21 @@ import { AiOutlineForm } from 'react-icons/ai';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import { Spinner } from '@/app/components';
 
 function DeleteIssueButton({ issueId }: { issueId: number }) {
   const [error, setError] = useState(false);
+  const [isDelete, setIsDelete] = useState(false);
   const route = useRouter();
 
   const handleDeleteIssue = async () => {
     try {
+      setIsDelete(true);
       await axios.delete(`/api/issues/${issueId}`);
       route.push('/issues');
       route.refresh();
     } catch (error) {
+      setIsDelete(false);
       if (error) setError(true);
     }
   };
@@ -25,8 +29,9 @@ function DeleteIssueButton({ issueId }: { issueId: number }) {
     <>
       <AlertDialog.Root>
         <AlertDialog.Trigger>
-          <Button color="red">
+          <Button color="red" disabled={isDelete}>
             <AiOutlineForm />
+            {isDelete && <Spinner />}
             Delete Issue
           </Button>
         </AlertDialog.Trigger>
