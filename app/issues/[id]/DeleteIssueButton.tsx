@@ -3,8 +3,12 @@
 import Link from 'next/link';
 import { Button, AlertDialog, Flex } from '@radix-ui/themes';
 import { AiOutlineForm } from 'react-icons/ai';
+import axios from 'axios';
+import { useRouter } from 'next/navigation';
 
 function DeleteIssueButton({ issueId }: { issueId: number }) {
+  const route = useRouter()
+
   return (
     <AlertDialog.Root>
       <AlertDialog.Trigger>
@@ -20,7 +24,14 @@ function DeleteIssueButton({ issueId }: { issueId: number }) {
         </AlertDialog.Description>
         <Flex mt="3" gap="3" justify="end">
           <AlertDialog.Action>
-            <Button color="red">
+            <Button
+              color="red"
+              onClick={async () => {
+                await axios.delete(`/api/issues/${issueId}`)
+                route.push('/issues')
+                route.refresh()
+              }}
+            >
               Delete Issue
             </Button>
           </AlertDialog.Action>
