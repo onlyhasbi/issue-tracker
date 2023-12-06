@@ -10,4 +10,6 @@ async function EditIssuePage({ params: { id } }: { params: { id: string } }) {
   return <IssueForm issue={issue} />;
 }
 
+export const dynamic = 'force-dynamic'
+
 export default EditIssuePage;
