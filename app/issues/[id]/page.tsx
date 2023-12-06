@@ -25,7 +25,7 @@ async function IssueDetailPage({ params }: Props) {
       <Box className="md:col-span-4">
         <IssueDetails issue={issue} />
       </Box>
-      <Flex direction="column" gap="2">
+      <Flex direction="column" gap="3">
         <EditIssueButton issueId={issue.id} />
         <DeleteIssueButton issueId={issue.id} />
       </Flex>
