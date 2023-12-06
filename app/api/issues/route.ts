@@ -1,6 +1,6 @@
 import prisma from '@/prisma/client';
 import { NextRequest, NextResponse } from 'next/server';
-import { issueSchema } from '../../validationSchema';
+import { issueSchema } from '@/app/validationSchema';
 
 export async function GET(request: NextRequest) {
   const issues = await prisma.issue.findMany({});
@@ -24,3 +24,5 @@ export async function POST(request: NextRequest) {
 
   return NextResponse.json(newIssue, { status: 201 });
 }
+
+
