@@ -27,7 +27,6 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning={true}>
       <body className={inter.variable}>
         <AuthProvider>
-          {' '}
           <Theme appearance="light" accentColor="purple">
             <NavBar />
             <main className="p-5">
