@@ -2,7 +2,8 @@ import { Table } from '@radix-ui/themes';
 import { Skeleton } from '@/app/components';
 import IssueAction from './IssueAction';
 
-function LoadingIssue() {
+
+function LoadingIssuePage() {
   const issues = [1, 2, 3, 4, 5];
 
   return (
@@ -43,4 +44,4 @@ function LoadingIssue() {
   );
 }
 
-export default LoadingIssue;
+export default LoadingIssuePage;

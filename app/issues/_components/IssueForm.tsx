@@ -11,12 +11,8 @@ import { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { LuInfo } from 'react-icons/lu';
 import { z } from 'zod';
-import dynamic from 'next/dynamic';
+import SimpleMDE from 'react-simplemde-editor'
 import { Issue } from '@prisma/client';
-
-const SimpleMDE = dynamic(async () => import('react-simplemde-editor'), {
-  ssr: false,
-});
 
 type IssueFormData = z.infer<typeof issueSchema>;
 

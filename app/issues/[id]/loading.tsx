@@ -1,7 +1,7 @@
 import { Box, Card, Flex, Heading } from '@radix-ui/themes';
 import { Skeleton } from '@/app/components';
 
-function LoadingDetailIssue() {
+function LoadingDetailIssuePage() {
   return (
     <Box className="max-w-xl">
       <Heading>
@@ -18,4 +18,4 @@ function LoadingDetailIssue() {
   );
 }
 
-export default LoadingDetailIssue;
+export default LoadingDetailIssuePage;

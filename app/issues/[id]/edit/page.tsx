@@ -1,6 +1,15 @@
 import prisma from '@/prisma/client';
 import { notFound } from 'next/navigation';
-import IssueForm from '@/app/issues/_components/IssueForm';
+import dynamicNext from 'next/dynamic';
+import IssueFormSkeleton from '../../_components/IssueFormSkeleton';
+
+const IssueForm = dynamicNext(
+  async () => import('@/app/issues/_components/IssueForm'),
+  {
+    ssr: false,
+    loading: () => <IssueFormSkeleton />,
+  }
+);
 
 async function EditIssuePage({ params: { id } }: { params: { id: string } }) {
   const issue = await prisma.issue.findUnique({ where: { id: parseInt(id) } });
@@ -10,6 +19,6 @@ async function EditIssuePage({ params: { id } }: { params: { id: string } }) {
   return <IssueForm issue={issue} />;
 }
 
-export const dynamic = 'force-dynamic'
+export const dynamic = 'force-dynamic';
 
 export default EditIssuePage;
