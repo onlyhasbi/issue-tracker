@@ -6,7 +6,6 @@ import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import Skeleton from '@/app/components/Skeleton';
 
-
 function AssigneSelect() {
   const {
     data: users,
@@ -14,11 +13,11 @@ function AssigneSelect() {
     isLoading,
   } = useQuery<User[]>({
     queryKey: ['users'],
-    queryFn: () => axios.get('api/users').then(({ data }) => data),
+    queryFn: () => axios.get('/api/users').then(({ data }) => data),
     staleTime: 60 * 60 * 1000 * 24,
   });
 
-  if (isLoading) <Skeleton />;
+  if (isLoading) return <Skeleton />;
 
   if (error) return null;
 
