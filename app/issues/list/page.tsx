@@ -48,7 +48,10 @@ async function IssuePage({ searchParams }: Props) {
         <Table.Header>
           <Table.Row>
             {columns.map((column) => (
-              <Table.RowHeaderCell key={column.value}>
+              <Table.RowHeaderCell
+                key={column.value}
+                className={column.className || ''}
+              >
                 <NextLink
                   href={{ query: { ...searchParams, orderBy: column.value } }}
                   className="flex gap-3 items-center"
