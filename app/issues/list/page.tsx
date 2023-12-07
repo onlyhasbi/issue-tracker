@@ -1,12 +1,24 @@
 import { IssuesBadge, Link } from '@/app/components';
 import prisma from '@/prisma/client';
-import { Box, Table } from '@radix-ui/themes';
+import { Box, Table, Text } from '@radix-ui/themes';
 import IssueAction from './IssueAction';
-import { Status } from '@prisma/client';
+import { Issue, Status } from '@prisma/client';
+import NextLink from 'next/link';
+import { AiOutlineUp } from 'react-icons/ai';
 
 type Props = {
-  searchParams: { status: Status };
+  searchParams: { status: Status; orderBy: keyof Issue };
 };
+
+const columns: { label: string; value: keyof Issue; className?: string }[] = [
+  { label: 'Issue', value: 'title' },
+  { label: 'Status', value: 'status', className: 'hidden md:table-cell' },
+  {
+    label: 'Created At',
+    value: 'createdAt',
+    className: 'hidden md:table-cell',
+  },
+];
 
 async function IssuePage({ searchParams }: Props) {
   const statuses = Object.values(Status);
@@ -27,13 +39,17 @@ async function IssuePage({ searchParams }: Props) {
       <Table.Root variant="surface">
         <Table.Header>
           <Table.Row>
-            <Table.RowHeaderCell>Title</Table.RowHeaderCell>
-            <Table.RowHeaderCell className="hidden md:table-cell">
-              Description
-            </Table.RowHeaderCell>
-            <Table.RowHeaderCell className="hidden md:table-cell">
-              Status
-            </Table.RowHeaderCell>
+            {columns.map((column) => (
+              <Table.RowHeaderCell key={column.value}>
+                <NextLink
+                  href={{ query: { ...searchParams, orderBy: column.value } }}
+                  className="flex gap-3 items-center"
+                >
+                  <Text>{column.label}</Text>
+                  {searchParams.orderBy === column.value && <AiOutlineUp />}
+                </NextLink>
+              </Table.RowHeaderCell>
+            ))}
           </Table.Row>
         </Table.Header>
         <Table.Body>
