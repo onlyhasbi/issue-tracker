@@ -1,11 +1,16 @@
-import { Button } from '@radix-ui/themes';
+import IssueStatusFilter from '@/app/IssueStatusFilter';
+import { Button, Flex } from '@radix-ui/themes';
 import Link from 'next/link';
 
 function IssueAction() {
   return (
-    <Button variant="solid">
-      <Link href="/issues/new">New Issue</Link>
-    </Button>
+    <Flex gap="4" justify="between">
+      <IssueStatusFilter />
+
+      <Button variant="solid">
+        <Link href="/issues/new">New Issue</Link>
+      </Button>
+    </Flex>
   );
 }
 
