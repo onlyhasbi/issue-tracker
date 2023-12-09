@@ -25,7 +25,7 @@ async function LatestIssue({}: Props) {
               <Table.Cell>
                 <Flex justify="between" align="center">
                   <Flex direction="column" gap="3" align="start">
-                    <Link href={`/issues/list/${issue.id}`}>{issue.title}</Link>
+                    <Link href={`/issues/${issue.id}`}>{issue.title}</Link>
                     <IssuesBadge status={issue.status} />
                   </Flex>
                   {issue.assignedToUserId && (
