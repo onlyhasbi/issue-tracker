@@ -6,7 +6,6 @@ function IssueAction() {
   return (
     <Flex gap="4" justify="between">
       <IssueStatusFilter />
-
       <Button variant="solid">
         <Link href="/issues/new">New Issue</Link>
       </Button>

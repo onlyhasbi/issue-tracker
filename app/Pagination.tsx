@@ -47,7 +47,7 @@ function Pagination({ itemCount, pageSize, currentPage }: Props) {
         <AiOutlineLeft />
       </Button>
       <Text>
-        Page {currentPage} of {pageSize}
+        Page {currentPage} of {pageCount}
       </Text>
       <Button
         onClick={() => onChangePage(currentPage + 1)}
