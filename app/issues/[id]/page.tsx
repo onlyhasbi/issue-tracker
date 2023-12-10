@@ -1,13 +1,20 @@
 import prisma from '@/prisma/client';
 import { Box, Grid, Flex } from '@radix-ui/themes';
 import { notFound } from 'next/navigation';
-import EditIssueButton from './EditIssueButton';
 import IssueDetails from './IssueDetail';
 import DeleteIssueButton from './DeleteIssueButton';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/app/auth/authOptions';
 import AssigneSelect from './AssigneSelect';
 import { cache } from 'react';
+import dynamic from 'next/dynamic';
+
+const EditIssueButton = dynamic(
+  async () => import('./DeleteIssueButton'),
+  {
+    ssr: false,
+  }
+);
 
 type Props = {
   params: {
