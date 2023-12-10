@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import { AlertDialog, Button, Flex } from '@radix-ui/themes';
 import { useState } from 'react';
@@ -28,7 +28,7 @@ function DeleteIssueButton({ issueId }: { issueId: number }) {
     <>
       <AlertDialog.Root>
         <AlertDialog.Trigger>
-          <Button disabled={isDelete}>
+          <Button color="red" variant="solid" disabled={isDelete}>
             <AiOutlineForm />
             {isDelete && <Spinner />}
             Delete Issue
@@ -41,7 +41,7 @@ function DeleteIssueButton({ issueId }: { issueId: number }) {
           </AlertDialog.Description>
           <Flex mt="3" gap="3" justify="end">
             <AlertDialog.Action>
-              <Button color="red" onClick={handleDeleteIssue}>
+              <Button color="red" variant="solid" onClick={handleDeleteIssue}>
                 Delete Issue
               </Button>
             </AlertDialog.Action>
