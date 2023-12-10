@@ -28,7 +28,7 @@ function DeleteIssueButton({ issueId }: { issueId: number }) {
     <>
       <AlertDialog.Root>
         <AlertDialog.Trigger>
-          <Button color="red" variant="surface" disabled={isDelete}>
+          <Button color="red" disabled={isDelete}>
             <AiOutlineDelete />
             {isDelete && <Spinner />}
             Delete Issue
@@ -41,7 +41,7 @@ function DeleteIssueButton({ issueId }: { issueId: number }) {
           </AlertDialog.Description>
           <Flex mt="3" gap="3" justify="end">
             <AlertDialog.Action>
-              <Button color="red" variant="surface" onClick={handleDeleteIssue}>
+              <Button color="red" onClick={handleDeleteIssue}>
                 Delete Issue
               </Button>
             </AlertDialog.Action>
