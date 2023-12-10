@@ -9,7 +9,7 @@ import { AiOutlineForm } from 'react-icons/ai';
 
 function DeleteIssueButton({ issueId }: { issueId: number }) {
   const route = useRouter();
-  const [error, setError] = useState(false);
+  const [isError, setIsError] = useState(false);
   const [isDelete, setIsDelete] = useState(false);
 
   const handleDeleteIssue = async () => {
@@ -20,7 +20,7 @@ function DeleteIssueButton({ issueId }: { issueId: number }) {
       route.refresh();
     } catch (error) {
       setIsDelete(false);
-      setError(true);
+      setIsError(true);
     }
   };
 
@@ -53,7 +53,7 @@ function DeleteIssueButton({ issueId }: { issueId: number }) {
           </Flex>
         </AlertDialog.Content>
       </AlertDialog.Root>
-      <AlertDialog.Root open={error}>
+      <AlertDialog.Root open={isError}>
         <AlertDialog.Content>
           <AlertDialog.Title>Error</AlertDialog.Title>
           <AlertDialog.Description>
@@ -64,7 +64,7 @@ function DeleteIssueButton({ issueId }: { issueId: number }) {
               variant="soft"
               color="gray"
               mt="3"
-              onClick={() => setError(false)}
+              onClick={() => setIsError(false)}
             >
               Ok
             </Button>
