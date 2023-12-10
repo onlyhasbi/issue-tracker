@@ -41,7 +41,7 @@ async function IssuePage({ searchParams }: Props) {
 
   return (
     <Box className="space-y-5">
-      {session && <IssueAction />}
+      <IssueAction />
       <IssueTable searchParams={searchParams} issues={issues} />
       <Pagination
         itemCount={issueCount}
