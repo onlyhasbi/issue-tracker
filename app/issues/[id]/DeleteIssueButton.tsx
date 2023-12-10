@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { Spinner } from '@/app/components';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
-import { AiOutlineForm } from 'react-icons/ai';
+import { AiOutlineDelete } from 'react-icons/ai';
 
 function DeleteIssueButton({ issueId }: { issueId: number }) {
   const route = useRouter();
@@ -29,7 +29,7 @@ function DeleteIssueButton({ issueId }: { issueId: number }) {
       <AlertDialog.Root>
         <AlertDialog.Trigger>
           <Button color="red" variant="surface" disabled={isDelete}>
-            <AiOutlineForm />
+            <AiOutlineDelete />
             {isDelete && <Spinner />}
             Delete Issue
           </Button>
