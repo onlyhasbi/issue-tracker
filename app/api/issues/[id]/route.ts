@@ -2,7 +2,7 @@ import { getServerSession } from 'next-auth';
 import prisma from '@/prisma/client';
 import { NextRequest, NextResponse } from 'next/server';
 import { issueSchema, patchIssueSchema } from '@/app/validationSchema';
-import { authOptions } from '../../auth/authOptions';
+import { authOptions } from '../../../auth/authOptions';
 
 export async function PUT(
   request: NextRequest,
