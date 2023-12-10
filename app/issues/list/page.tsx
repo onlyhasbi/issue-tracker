@@ -4,7 +4,7 @@ import { Status } from '@prisma/client';
 import { Box } from '@radix-ui/themes';
 import IssueAction from './IssueAction';
 import IssueTable, { IssueQuery, columnNames } from './IssueTable';
-import {Metadata} from 'next'
+import { Metadata } from 'next';
 
 type Props = {
   searchParams: IssueQuery;
@@ -18,7 +18,7 @@ async function IssuePage({ searchParams }: Props) {
 
   const status = statuses.includes(searchParams.status)
     ? searchParams.status
-    : undefined;  
+    : undefined;
 
   const orderBy =
     searchParams.orderBy &&
@@ -41,7 +41,7 @@ async function IssuePage({ searchParams }: Props) {
 
   return (
     <Box className="space-y-5">
-      <IssueAction />
+      {session && <IssueAction />}
       <IssueTable searchParams={searchParams} issues={issues} />
       <Pagination
         itemCount={issueCount}
@@ -58,6 +58,5 @@ export const metadata: Metadata = {
   title: 'Issue Tracker - Issue List',
   description: 'View all project issues',
 };
-
 
 export default IssuePage;
