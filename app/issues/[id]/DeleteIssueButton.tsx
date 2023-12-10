@@ -1,12 +1,11 @@
 'use client';
 
-import Link from 'next/link';
-import { Button, AlertDialog, Flex } from '@radix-ui/themes';
-import { AiOutlineForm } from 'react-icons/ai';
+import { Spinner } from '@/app/components';
+import { AlertDialog, Button, Flex } from '@radix-ui/themes';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import { Spinner } from '@/app/components';
+import { AiOutlineForm } from 'react-icons/ai';
 
 function DeleteIssueButton({ issueId }: { issueId: number }) {
   const [error, setError] = useState(false);
@@ -21,7 +20,7 @@ function DeleteIssueButton({ issueId }: { issueId: number }) {
       route.refresh();
     } catch (error) {
       setIsDelete(false);
-      if (error) setError(true);
+      setError(true);
     }
   };
 
