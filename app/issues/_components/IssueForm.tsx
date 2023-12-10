@@ -11,6 +11,7 @@ import { Controller, useForm } from 'react-hook-form';
 import { LuInfo } from 'react-icons/lu';
 import { z } from 'zod';
 import SimpleMDE from 'react-simplemde-editor'
+import 'easymde/dist/easymde.min.css';
 import { Issue } from '@prisma/client';
 
 type IssueFormData = z.infer<typeof issueSchema>;
