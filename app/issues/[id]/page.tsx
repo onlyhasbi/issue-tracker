@@ -1,5 +1,5 @@
 import prisma from '@/prisma/client';
-import { Box, Grid, Flex } from '@radix-ui/themes';
+import { Box, Grid, Flex, Button } from '@radix-ui/themes';
 import { notFound } from 'next/navigation';
 import EditIssueButton from './EditIssueButton';
 import IssueDetails from './IssueDetail';
@@ -7,14 +7,6 @@ import { getServerSession } from 'next-auth';
 import { authOptions } from '@/app/auth/authOptions';
 import AssigneSelect from './AssigneSelect';
 import { cache } from 'react';
-import dynamic from 'next/dynamic';
-
-const DeleteIssueButton = dynamic(
-  async () => import('./DeleteIssueButton'),
-  {
-    ssr: false,
-  }
-);
 
 type Props = {
   params: {
@@ -42,7 +34,7 @@ async function IssueDetailPage({ params }: Props) {
         <Flex direction="column" gap="3">
           <AssigneSelect issue={issue} />
           <EditIssueButton issueId={issue.id} />
-          <DeleteIssueButton issueId={issue.id} />
+          <Button color="red">Delete Issue</Button>
         </Flex>
       )}
     </Grid>
