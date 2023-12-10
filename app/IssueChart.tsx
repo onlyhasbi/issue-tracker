@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import { Card } from '@radix-ui/themes';
 import {
@@ -11,9 +11,15 @@ import {
 } from 'recharts';
 import React from 'react';
 
-type Props = { open: number; inProgress: number; closed: number };
+type Props = {
+  statistic: {
+    open: number;
+    inProgress: number;
+    closed: number;
+  };
+};
 
-function IssueChart({ open, inProgress, closed }: Props) {
+function IssueChart({ statistic: { open, inProgress, closed } }: Props) {
   const data = [
     { label: 'Open', value: open },
     { label: 'In Progress', value: inProgress },
