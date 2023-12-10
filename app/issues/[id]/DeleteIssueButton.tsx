@@ -1,13 +1,13 @@
 'use client';
 
-import { Spinner } from '@/app/components';
 import { AlertDialog, Button, Flex } from '@radix-ui/themes';
 import axios from 'axios';
-import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import { Spinner } from '@/app/components';
+import { useRouter } from 'next/navigation';
 import { AiOutlineForm } from 'react-icons/ai';
 
-const DeleteIssueButton = ({ issueId }: { issueId: number }) => {
+function DeleteIssueButton({ issueId }: { issueId: number }) {
   const [error, setError] = useState(false);
   const [isDelete, setIsDelete] = useState(false);
   const route = useRouter();
@@ -25,7 +25,7 @@ const DeleteIssueButton = ({ issueId }: { issueId: number }) => {
   };
 
   return (
-    <div>
+    <>
       <AlertDialog.Root>
         <AlertDialog.Trigger>
           <Button color="red" disabled={isDelete}>
@@ -71,8 +71,8 @@ const DeleteIssueButton = ({ issueId }: { issueId: number }) => {
           </AlertDialog.Cancel>
         </AlertDialog.Content>
       </AlertDialog.Root>
-    </div>
+    </>
   );
-};
+}
 
 export default DeleteIssueButton;
