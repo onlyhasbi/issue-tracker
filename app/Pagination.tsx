@@ -1,4 +1,4 @@
-'use client';
+'use client'
 import { Flex, Text, Button } from '@radix-ui/themes';
 import { useSearchParams } from 'next/navigation';
 import { useRouter } from 'next/navigation';

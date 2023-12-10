@@ -1,4 +1,4 @@
-'use client';
+'use client'
 
 import { Status } from '@prisma/client';
 import { Select } from '@radix-ui/themes';

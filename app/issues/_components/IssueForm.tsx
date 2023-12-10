@@ -1,4 +1,4 @@
-'use client';
+'use client'
 
 import { ErrorMessage, Spinner } from '@/app/components';
 import { issueSchema } from '@/app/validationSchema';

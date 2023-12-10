@@ -1,4 +1,4 @@
-'use client';
+'use client'
 
 import { AlertDialog, Button, Flex } from '@radix-ui/themes';
 import { useState } from 'react';
@@ -8,9 +8,9 @@ import axios from 'axios';
 import { AiOutlineForm } from 'react-icons/ai';
 
 function DeleteIssueButton({ issueId }: { issueId: number }) {
+  const route = useRouter();
   const [error, setError] = useState(false);
   const [isDelete, setIsDelete] = useState(false);
-  const route = useRouter();
 
   const handleDeleteIssue = async () => {
     try {

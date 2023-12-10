@@ -1,4 +1,4 @@
-'use client';
+'use client'
 
 import Skeleton from '@/app/components/Skeleton';
 import { Issue, User } from '@prisma/client';

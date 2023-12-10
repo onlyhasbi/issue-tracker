@@ -1,4 +1,4 @@
-'use client';
+'use client'
 
 import { Card } from '@radix-ui/themes';
 import {
