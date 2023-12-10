@@ -32,13 +32,23 @@ async function IssueDetailPage({ params }: Props) {
       </Box>
       {session && (
         <Flex direction="column" gap="3">
-          <AssigneSelect issue={issue}/>
+          <AssigneSelect issue={issue} />
           <EditIssueButton issueId={issue.id} />
           <DeleteIssueButton issueId={issue.id} />
         </Flex>
       )}
     </Grid>
   );
+}
+
+export async function generateMetadata({ params }: Props) {
+  const issue = await prisma.issue.findUnique({
+    where: { id: parseInt(params.id) },
+  });
+  return {
+    title: issue?.title,
+    description: 'Detail of issue ' + issue?.id,
+  };
 }
 
 export default IssueDetailPage;
