@@ -28,7 +28,7 @@ function DeleteIssueButton({ issueId }: { issueId: number }) {
     <>
       <AlertDialog.Root>
         <AlertDialog.Trigger>
-          <Button color="red" disabled={isDelete}>
+          <Button disabled={isDelete}>
             <AiOutlineForm />
             {isDelete && <Spinner />}
             Delete Issue
