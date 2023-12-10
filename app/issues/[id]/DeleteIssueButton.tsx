@@ -7,7 +7,7 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { AiOutlineForm } from 'react-icons/ai';
 
-function DeleteIssueButton({ issueId }: { issueId: number }) {
+const DeleteIssueButton = ({ issueId }: { issueId: number }) => {
   const [error, setError] = useState(false);
   const [isDelete, setIsDelete] = useState(false);
   const route = useRouter();
@@ -73,6 +73,6 @@ function DeleteIssueButton({ issueId }: { issueId: number }) {
       </AlertDialog.Root>
     </>
   );
-}
+};
 
 export default DeleteIssueButton;
