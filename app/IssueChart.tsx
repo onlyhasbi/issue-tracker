@@ -7,7 +7,9 @@ import {
   BarChart,
   XAxis,
   YAxis,
+  Tooltip,
   Bar,
+  Cell
 } from 'recharts';
 import React from 'react';
 
@@ -18,6 +20,8 @@ type Props = {
     closed: number;
   };
 };
+
+const colors = ['#00B6AC', '#ce295b', '#754bb9'];
 
 function IssueChart({ statistic: { open, inProgress, closed } }: Props) {
   const data = [
@@ -39,11 +43,12 @@ function IssueChart({ statistic: { open, inProgress, closed } }: Props) {
           <CartesianGrid vertical={false} strokeDasharray="3 3" />
           <XAxis dataKey="label" fontSize={12} strokeOpacity={0} />
           <YAxis fontSize={12} strokeOpacity={0} />
-          <Bar
-            dataKey="value"
-            barSize={75}
-            style={{ fill: 'var(--purple-9)' }}
-          />
+          <Tooltip/>
+          <Bar dataKey="value" barSize={75} fill="#8884d8">
+            {data?.map((_entry, index) => (
+              <Cell key={`cell-${index}`} fill={colors[index % 20]} />
+            ))}
+          </Bar>
         </BarChart>
       </ResponsiveContainer>
     </Card>

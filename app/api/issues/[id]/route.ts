@@ -1,7 +1,7 @@
-import { getServerSession } from 'next-auth';
+import { patchIssueSchema } from '@/app/validationSchema';
 import prisma from '@/prisma/client';
+import { getServerSession } from 'next-auth';
 import { NextRequest, NextResponse } from 'next/server';
-import { issueSchema, patchIssueSchema } from '@/app/validationSchema';
 import { authOptions } from '../../../auth/authOptions';
 
 export async function PUT(
@@ -14,7 +14,6 @@ export async function PUT(
     };
   }
 ) {
-
   const session = await getServerSession(authOptions);
   if (!session) return NextResponse.json({}, { status: 401 });
 
@@ -28,7 +27,7 @@ export async function PUT(
     );
   }
 
-  const { title, description, assignedToUserId } = body;
+  const { title, description, status, assignedToUserId } = body;
 
   if (assignedToUserId) {
     const user = prisma.user.findUnique({
@@ -58,7 +57,7 @@ export async function PUT(
     where: {
       id: parseInt(id),
     },
-    data: { title, description, assignedToUserId },
+    data: { title, description, status, assignedToUserId },
   });
 
   return NextResponse.json(updateIssue);

@@ -36,7 +36,7 @@ function IssueTable({ searchParams, issues }: Props) {
         {issues?.map((issue) => (
           <Table.Row key={issue.id}>
             <Table.Cell>
-              <Link href={`/issues/${issue.id}`}>{issue.title}</Link>
+              <NextLink className="hover:underline" href={`/issues/${issue.id}`}>{issue.title}</NextLink>
               <div className="block mt-1 md:hidden">
                 <IssuesBadge status={issue.status} />
               </div>
