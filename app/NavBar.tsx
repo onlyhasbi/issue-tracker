@@ -75,7 +75,7 @@ const AuthStatus = () => {
   return (
     <Box className="ml-auto">
       <DropdownMenu.Root>
-        <DropdownMenu.Trigger>
+        <DropdownMenu.Trigger className="cursor-pointer">
           <Flex gap="4" align="center">
             <Avatar
               size="2"

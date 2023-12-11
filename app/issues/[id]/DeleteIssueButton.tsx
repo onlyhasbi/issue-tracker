@@ -27,7 +27,7 @@ function DeleteIssueButton({ issueId }: { issueId: number }) {
     <>
       <AlertDialog.Root>
         <AlertDialog.Trigger>
-          <Button color="red" disabled={isDelete}>
+          <Button className="cursor-pointer" color="red" disabled={isDelete}>
             {isDelete && <Spinner />}
             Delete Issue
           </Button>
@@ -39,12 +39,12 @@ function DeleteIssueButton({ issueId }: { issueId: number }) {
           </AlertDialog.Description>
           <Flex mt="3" gap="3" justify="end">
             <AlertDialog.Action>
-              <Button color="red" onClick={handleDeleteIssue}>
+              <Button className="cursor-pointer"  color="red" onClick={handleDeleteIssue}>
                 Delete Issue
               </Button>
             </AlertDialog.Action>
             <AlertDialog.Cancel>
-              <Button variant="soft" color="gray">
+              <Button  className="cursor-pointer" variant="soft" color="gray">
                 Cancel
               </Button>
             </AlertDialog.Cancel>

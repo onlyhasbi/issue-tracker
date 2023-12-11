@@ -85,7 +85,7 @@ function IssueForm({ issue }: { issue?: Issue }) {
           <ErrorMessage>{errors.description?.message}</ErrorMessage>
         </Box>
 
-        <Button variant="solid" disabled={isSubmitting}>
+        <Button className="cursor-pointer" variant="solid" disabled={isSubmitting}>
           {isSubmitting && <Spinner />}
           {issue?.id ? 'Update Issue' : 'Submit Issue'}
         </Button>

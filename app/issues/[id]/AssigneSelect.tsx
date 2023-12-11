@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import Skeleton from '@/app/components/Skeleton';
 import { Issue, User } from '@prisma/client';
@@ -30,7 +30,7 @@ function AssigneSelect({ issue }: { issue: Issue }) {
         defaultValue={issue.assignedToUserId || 'unassigned'}
         onValueChange={handleAssignIssue}
       >
-        <Select.Trigger placeholder="Assign..." />
+        <Select.Trigger className="cursor-pointer" placeholder="Assign..." />
         <Select.Content>
           <Select.Group>
             <Select.Label>Suggestions</Select.Label>
