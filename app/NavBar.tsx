@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import Link from 'next/link';
 import classNames from 'classnames';
@@ -10,7 +10,7 @@ import {
   Text,
   DropdownMenu,
 } from '@radix-ui/themes';
-import { useSession } from 'next-auth/react';
+import { signOut, useSession } from 'next-auth/react';
 import { usePathname } from 'next/navigation';
 import { AiFillBug } from 'react-icons/ai';
 import Skeleton from '@/app/components/Skeleton';
@@ -67,8 +67,8 @@ const AuthStatus = () => {
 
   if (status === 'unauthenticated')
     return (
-      <Link href="/api/auth/signin" className="nav-link">
-        Login
+      <Link href="/auth/signin" className="nav-link">
+        Sign In
       </Link>
     );
 
@@ -86,11 +86,11 @@ const AuthStatus = () => {
           </Flex>
         </DropdownMenu.Trigger>
         <DropdownMenu.Content>
-          <DropdownMenu.Item>
+          <DropdownMenu.Item className="cursor-pointer">
             <Text size="2">{session!.user!.email}</Text>
           </DropdownMenu.Item>
-          <DropdownMenu.Item>
-            <Link href="/api/auth/signout">Logout</Link>
+          <DropdownMenu.Item className="cursor-pointer" onClick={() => signOut()}>
+            Sign Out
           </DropdownMenu.Item>
         </DropdownMenu.Content>
       </DropdownMenu.Root>
