@@ -21,7 +21,7 @@ type Props = {
   };
 };
 
-const colors = ['#00B6AC', '#ce295b', '#754bb9'];
+const colors = ['#ce295b', '#754bb9','#00B6AC'];
 
 function IssueChart({ statistic: { open, inProgress, closed } }: Props) {
   const data = [
