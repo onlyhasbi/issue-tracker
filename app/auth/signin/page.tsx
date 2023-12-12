@@ -1,18 +1,20 @@
 'use client';
 
+import useUserSession from '@/app/useUserSession';
 import {
+  Box,
   Button,
+  Callout,
   Card,
   Flex,
   Heading,
-  TextField,
   Text,
-  Box,
-  Callout,
+  TextField,
 } from '@radix-ui/themes';
 import { signIn } from 'next-auth/react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { AiOutlineInfoCircle } from 'react-icons/ai';
 
@@ -44,6 +46,14 @@ function SignIn() {
       callbackUrl: searchParams.get('callbackUrl')?.toString() || '/',
     });
   });
+
+  const { isRedirectHome, redirectToHome } = useUserSession();
+
+  useEffect(() => {
+    if (isRedirectHome) {
+      redirectToHome();
+    }
+  }, [isRedirectHome]);
 
   return (
     <Flex className="h-[30rem]" justify="center" align="center">

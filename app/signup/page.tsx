@@ -13,6 +13,8 @@ import { signIn } from 'next-auth/react';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useForm } from 'react-hook-form';
+import useUserSession from '../useUserSession';
+import { useEffect } from 'react';
 
 function SignUp() {
   const { register, handleSubmit } = useForm<{
@@ -30,6 +32,14 @@ function SignUp() {
     console.log(data);
     router.push('/auth/signin');
   });
+
+  const { isRedirectHome, redirectToHome } = useUserSession();
+
+  useEffect(() => {
+    if (isRedirectHome) {
+      redirectToHome();
+    }
+  }, [isRedirectHome]);
 
   return (
     <Flex className="h-[30rem]" justify="center" align="center">
