@@ -12,7 +12,8 @@ function SignInLoading() {
             justify="center"
             gap="4"
           >
-            <Skeleton width="5rem" count={5} />
+            <Skeleton width="7rem" height="2rem" className="mb-3" />
+            <Skeleton height="2rem" count={4} />
           </Flex>
         </Card>
       </Box>

@@ -15,15 +15,29 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import useUserSession from '../useUserSession';
 import { useEffect } from 'react';
+import { ErrorMessage } from '../components';
+import { z } from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
+
+const signUpSchema = z.object({
+  name: z.string().min(1, 'name required'),
+  email: z.string().email(),
+  password: z.string().min(5, 'password to weak'),
+});
 
 function SignUp() {
   const { isRedirectHome, redirectToHome } = useUserSession();
 
-  const { register, handleSubmit } = useForm<{
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<{
     name: string;
     email: string;
     password: string;
   }>({
+    resolver: zodResolver(signUpSchema),
     defaultValues: { name: '', email: '', password: '' },
   });
 
@@ -57,27 +71,36 @@ function SignUp() {
           </Heading>
           <form onSubmit={onSubmit}>
             <Flex direction="column" gap="3">
-              <TextField.Root>
-                <TextField.Input
-                  type="name"
-                  placeholder="Name"
-                  {...register('name')}
-                />
-              </TextField.Root>
-              <TextField.Root>
-                <TextField.Input
-                  type="email"
-                  placeholder="Email"
-                  {...register('email')}
-                />
-              </TextField.Root>
-              <TextField.Root>
-                <TextField.Input
-                  type="password"
-                  placeholder="Password"
-                  {...register('password')}
-                />
-              </TextField.Root>
+              <Box className="space-y-1">
+                <TextField.Root>
+                  <TextField.Input
+                    type="name"
+                    placeholder="Name"
+                    {...register('name')}
+                  />
+                </TextField.Root>
+                <ErrorMessage>{errors.name?.message}</ErrorMessage>
+              </Box>
+              <Box className="space-y-1">
+                <TextField.Root>
+                  <TextField.Input
+                    type="email"
+                    placeholder="Email"
+                    {...register('email')}
+                  />
+                </TextField.Root>
+                <ErrorMessage>{errors.email?.message}</ErrorMessage>
+              </Box>
+              <Box className="space-y-1">
+                <TextField.Root>
+                  <TextField.Input
+                    type="password"
+                    placeholder="Password"
+                    {...register('password')}
+                  />
+                </TextField.Root>
+                <ErrorMessage>{errors.password?.message}</ErrorMessage>
+              </Box>
               <Button className="cursor-pointer" type="submit">
                 Sign Up
               </Button>

@@ -12,7 +12,8 @@ function SignUpLoading() {
             justify="center"
             gap="4"
           >
-            <Skeleton width="5rem" count={6} />
+            <Skeleton width="6rem" height="2rem" count={6} />
+            <Skeleton height="2rem" count={5} />
           </Flex>
         </Card>
       </Box>
