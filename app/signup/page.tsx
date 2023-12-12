@@ -17,6 +17,8 @@ import useUserSession from '../useUserSession';
 import { useEffect } from 'react';
 
 function SignUp() {
+  const { isRedirectHome, redirectToHome } = useUserSession();
+
   const { register, handleSubmit } = useForm<{
     name: string;
     email: string;
@@ -25,7 +27,7 @@ function SignUp() {
     defaultValues: { name: '', email: '', password: '' },
   });
 
-  const searchParams = useSearchParams()
+  const searchParams = useSearchParams();
   const router = useRouter();
 
   const onSubmit = handleSubmit((data) => {
@@ -33,13 +35,13 @@ function SignUp() {
     router.push('/auth/signin');
   });
 
-  const { isRedirectHome, redirectToHome } = useUserSession();
-
   useEffect(() => {
     if (isRedirectHome) {
       redirectToHome();
     }
   }, [isRedirectHome]);
+
+  if (isRedirectHome) return null;
 
   return (
     <Flex className="h-[30rem]" justify="center" align="center">

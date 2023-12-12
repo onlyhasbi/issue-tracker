@@ -19,6 +19,7 @@ import { useForm } from 'react-hook-form';
 import { AiOutlineInfoCircle } from 'react-icons/ai';
 
 function SignIn() {
+  const { isRedirectHome, redirectToHome } = useUserSession();
   const { register, handleSubmit } = useForm<{
     email: string;
     password: string;
@@ -47,13 +48,13 @@ function SignIn() {
     });
   });
 
-  const { isRedirectHome, redirectToHome } = useUserSession();
-
   useEffect(() => {
     if (isRedirectHome) {
       redirectToHome();
     }
   }, [isRedirectHome]);
+
+  if (isRedirectHome) return null;
 
   return (
     <Flex className="h-[30rem]" justify="center" align="center">
