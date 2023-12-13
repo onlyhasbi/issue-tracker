@@ -43,14 +43,6 @@ function SignIn() {
   const searchParams = useSearchParams();
 
   const signInError = searchParams.get('error');
-  const errorInfo = (info: string) => {
-    switch (info) {
-      case 'CredentialsSignin':
-        return 'Invalid Credentials';
-      case 'pchstr must be a non-empty string':
-        return 'Credential not registered';
-    }
-  };
 
   const onSubmit = handleSubmit(async (data) => {
     await signIn('credentials', {
@@ -83,13 +75,8 @@ function SignIn() {
           </Callout.Root>
         )}
         <Card className="w-[22rem]" size="3">
-          <Flex
-            className="text-center"
-            direction="column"
-            justify="center"
-            gap="4"
-          >
-            <Heading as="h1" size="4">
+          <Flex direction="column" justify="center" gap="4">
+            <Heading as="h1" size="4" className="text-center">
               Sign In
             </Heading>
             <form onSubmit={onSubmit}>
@@ -133,7 +120,7 @@ function SignIn() {
             >
               Sign In with Google
             </Button>
-            <Box>
+            <Box className="text-center">
               <Text size="2">Not registered yet?</Text>
               <Link className="text-sm ml-1 hover:underline" href="/signup">
                 Sign Up
@@ -145,5 +132,14 @@ function SignIn() {
     </Flex>
   );
 }
+
+const errorInfo = (info: string) => {
+  switch (info) {
+    case 'CredentialsSignin':
+      return 'Invalid Credentials';
+    case 'pchstr must be a non-empty string':
+      return 'Credential not registered';
+  }
+};
 
 export default SignIn;

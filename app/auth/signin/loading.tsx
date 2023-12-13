@@ -10,9 +10,9 @@ function SignInLoading() {
             className="text-center"
             direction="column"
             justify="center"
-            gap="4"
+            gap="5"
           >
-            <Skeleton width="7rem" height="2rem" className="mb-3" />
+            <Skeleton width="7rem" height="1.6rem" className="mb-2" />
             <Skeleton height="2rem" count={4} />
           </Flex>
         </Card>

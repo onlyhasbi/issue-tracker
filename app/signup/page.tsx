@@ -25,8 +25,9 @@ const signUpSchema = z.object({
   password: z.string().min(5, 'password to weak'),
 });
 
-function SignUp() {
+ function SignUp() {
   const { isRedirectHome, redirectToHome } = useUserSession();
+
 
   const {
     register,
@@ -61,12 +62,11 @@ function SignUp() {
     <Flex className="h-[30rem]" justify="center" align="center">
       <Card className="w-[22rem]" size="3">
         <Flex
-          className="text-center"
           direction="column"
           justify="center"
           gap="4"
         >
-          <Heading as="h1" size="4">
+          <Heading as="h1" size="4" className="text-center">
             Sign Up
           </Heading>
           <form onSubmit={onSubmit}>
@@ -119,7 +119,7 @@ function SignUp() {
           >
             Sign Up with Google
           </Button>
-          <Box>
+          <Box className="text-center">
             <Text size="2">Have an account?</Text>
             <Link className="text-sm ml-1 hover:underline" href="/auth/signin">
               Sign In
