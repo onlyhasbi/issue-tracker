@@ -22,8 +22,11 @@ import { AiOutlineInfoCircle } from 'react-icons/ai';
 import { z } from 'zod';
 
 const signInSchema = z.object({
-  email: z.string().email(),
-  password: z.string().min(5, 'Password too weak'),
+  email: z
+    .string()
+    .min(1, 'Email required')
+    .email({ message: 'Incorrect email' }),
+  password: z.string().min(1, 'Password required').min(5, 'Password too weak'),
 });
 
 function SignIn() {

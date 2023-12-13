@@ -1,5 +1,6 @@
 'use client';
 
+import { zodResolver } from '@hookform/resolvers/zod';
 import {
   Box,
   Button,
@@ -12,22 +13,20 @@ import {
 import { signIn } from 'next-auth/react';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useForm } from 'react-hook-form';
-import useUserSession from '../useUserSession';
 import { useEffect } from 'react';
-import { ErrorMessage } from '../components';
+import { useForm } from 'react-hook-form';
 import { z } from 'zod';
-import { zodResolver } from '@hookform/resolvers/zod';
+import { ErrorMessage } from '../components';
+import useUserSession from '../useUserSession';
 
 const signUpSchema = z.object({
-  name: z.string().min(1, 'name required'),
-  email: z.string().email(),
-  password: z.string().min(5, 'password to weak'),
+  name: z.string().min(1,"Name required").min(3, 'Name character min. 3'),
+  email: z.string().min(1,"Email required").email({message:'Incorrect email'}),
+  password: z.string().min(1,"Password required").min(5, 'Password too weak'),
 });
 
- function SignUp() {
+function SignUp() {
   const { isRedirectHome, redirectToHome } = useUserSession();
-
 
   const {
     register,
@@ -61,11 +60,7 @@ const signUpSchema = z.object({
   return (
     <Flex className="h-[30rem]" justify="center" align="center">
       <Card className="w-[22rem]" size="3">
-        <Flex
-          direction="column"
-          justify="center"
-          gap="4"
-        >
+        <Flex direction="column" justify="center" gap="4">
           <Heading as="h1" size="4" className="text-center">
             Sign Up
           </Heading>
