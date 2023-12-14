@@ -26,7 +26,7 @@ const signInSchema = z.object({
     .string()
     .min(1, 'Email required')
     .email({ message: 'Incorrect email' }),
-  password: z.string().min(1, 'Password required').min(5, 'Password too weak'),
+  password: z.string().min(1, 'Password required'),
 });
 
 function SignIn() {
@@ -141,7 +141,7 @@ const errorInfo = (info: string) => {
     case 'CredentialsSignin':
       return 'Invalid Credentials';
     case 'pchstr must be a non-empty string':
-      return 'Credential not registered';
+      return 'Invalid Credentials';
   }
 };
 
